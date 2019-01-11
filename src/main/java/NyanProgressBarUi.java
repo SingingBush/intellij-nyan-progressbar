@@ -44,9 +44,10 @@ public class NyanProgressBarUi extends BasicProgressBarUI {
         });
     }
 
-    protected volatile int offset = 0;
-    protected volatile int offset2 = 0;
-    protected volatile int velocity = 1;
+    private volatile int offset = 0;
+    private volatile int offset2 = 0;
+    private volatile int velocity = 1;
+
     @Override
     protected void paintIndeterminate(Graphics g2d, JComponent c) {
 
