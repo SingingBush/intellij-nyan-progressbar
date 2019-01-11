@@ -1,29 +1,19 @@
 import com.intellij.ide.ui.LafManager;
-import com.intellij.ide.ui.LafManagerListener;
 import com.intellij.ide.ui.laf.LafManagerImpl;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.util.ui.UIUtil;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
-import java.net.URL;
+import javax.swing.UIManager;
 
 public class NyanApplicationComponent implements ApplicationComponent {
+
     private int shownProgressBars;
     private boolean isShown;
 
     public NyanApplicationComponent(LafManagerImpl lafManager) {
-        lafManager.addLafManagerListener(new LafManagerListener() {
-            @Override
-            public void lookAndFeelChanged(LafManager lafManager) {
-                updateProgressBarUi();
-            }
-        });
+        lafManager.addLafManagerListener(this::lookAndFeelChanged);
     }
 
     @Override
@@ -33,12 +23,10 @@ public class NyanApplicationComponent implements ApplicationComponent {
 
     @Override
     public void disposeComponent() {
-
     }
 
     @NotNull
     @Override
-
     public String getComponentName() {
         return "NyanLafUpdater";
     }
@@ -50,5 +38,9 @@ public class NyanApplicationComponent implements ApplicationComponent {
 
     static NyanApplicationComponent getInstance() {
         return ApplicationManager.getApplication().getComponent(NyanApplicationComponent.class);
+    }
+
+    private void lookAndFeelChanged(LafManager lafManager1) {
+        updateProgressBarUi();
     }
 }

@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.1'
+}
+
+group 'some.awesome'
+version '1.13'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+intellij {
+    version '2018.3.2'
+    pluginName 'NyanProgressBar'
+    type 'IC'
+    updateSinceUntilBuild false
+}
+
+apply plugin: 'idea'
+idea {
+    project {
+        jdkName = '1.8'
+        languageLevel = JavaVersion.VERSION_1_8
+        vcs = 'Git'
+    }
+}
